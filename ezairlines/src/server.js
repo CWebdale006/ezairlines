@@ -91,7 +91,6 @@ app.patch('/book', (req, res)=>{
         },
         body: JSON.stringify(body)
     }
-    console.log(options.body);
 
     request(options, function(error, response, body) {
         if (error) throw new Error(error);

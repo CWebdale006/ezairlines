@@ -2,10 +2,11 @@ import React from "react";
 import axios from 'axios';
 import { useAuth0 } from "../react-auth0-spa";
 
-// getting the body parser object
-let bodyParser = require('body-parser');
+// const { user } = useAuth0();
+// let userId = user.sub;
 
 export default function UpdateInfo() {
+    const { user } = useAuth0();
 
     const update = async () => {
         try {
@@ -17,15 +18,19 @@ export default function UpdateInfo() {
             const responseData = await response.json();
             const token = await responseData.token;
 
+            /**
+             * getting the id of the user currently logged in 
+             */
+
             /** 
              * now using the token
              */
             const info = {
-                userId: "google-oauth2|116658177472204313093",
+                userId: user.sub,
                 token: token,
                 body: {
                     // "user_metadata" : { "tickets": {BookedTickets} }
-                    user_metadata: { 'test': 'from update info' }
+                    user_metadata: { 'test3': 'from update info' }
                 }
             };
             

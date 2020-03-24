@@ -99,6 +99,16 @@ app.patch('/book', (req, res)=>{
     });
 });
 
+// getting destination data from mongoDB to populate the FlightList
+// component 
+app.get('/destinations/', (req,res) => {
+    try {
+        destinations=>res.json(destinations)
+    } catch(error) {
+        console.log("error from the 'destinations' route: "+error)
+    }
+})
+
 
 // starts the app 
 app.listen(3001, () => console.log('API listening on port 3001'));

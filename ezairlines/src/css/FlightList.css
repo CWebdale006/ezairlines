@@ -1,0 +1,21 @@
+.list-group {
+    color: red;
+}
+
+.list-group a {
+    height: 10vh;
+    background-color: rgba(124, 124, 124, 0.315);
+    border-radius: 10px;
+}
+
+#bruh {
+    border-radius: 10px;
+}
+
+.col .card {
+    border-radius: 10px;
+}
+
+#hehe {
+    border: none;
+}

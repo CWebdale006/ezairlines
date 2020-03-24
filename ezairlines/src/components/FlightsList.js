@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { round } from 'mathjs';
+import "../css/FlightList.css";
 
 import { useAuth0 } from "../react-auth0-spa";
 
@@ -50,6 +51,8 @@ function Weather(to) {
         )
     };
 
+    getWeather(to.to);
+
     return (
         <>
             <h4 id="city">Weather: </h4>
@@ -68,6 +71,7 @@ function Weather(to) {
 
 const Destination = props => {
     const { isAuthenticated, loginWithRedirect } = useAuth0();
+    console.log(props.destination);
 
     return (
         <tr id={props.destination.to}>
@@ -92,7 +96,108 @@ const Destination = props => {
 };
 
 const FlightsList = () => {
+    const [ destinations, setDestinations ] = useState([]);
+    const [ destinationsList, setDestinationsList ] = useState(()=>{
+        return destinations.map(currentDestination => {
+            console.log(currentDestination)
+            return <Destination destination={currentDestination} key={currentDestination._id} />;
+        })
+    });
+
+    useEffect(() => {
+       axios.get('http://localhost:3001/destinations/')
+        .then(res => {
+            setDestinations({ destinations: res.data });
+        }) 
+        .catch((error) => {
+            console.log(error);
+        })
+    });
     
+    const HeaderText = () => {
+        const { loading, user } = useAuth0();
+
+        if (loading || !user) {
+            return <div>Book a flight</div>;
+        }
+
+        return ( 
+            <Fragment>
+                Welcome, {user.given_name}!
+            </Fragment>
+        )
+    };
+
+    return( 
+        <>
+            <div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <h1 className="display-4">
+                                <HeaderText />
+                            </h1>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <div className="card">
+                                <div className="card-body">
+                                    <div>
+                                        <table className="table">
+                                            <thead className="thead-light">
+                                                <tr>
+                                                    <th>From</th>
+                                                    <th>To</th>
+                                                    <th>Depart Date</th>
+                                                    <th>Return Date</th>
+                                                    <th>Price</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                { destinationsList }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="card">
+                                <div className="card-body">
+                                    <div className="row">
+                                        <div className="col">
+                                            <div id="weatherApi">
+                                                <Weather to="sacramento" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="card" id="hehe">
+                                <div className="card-body">
+                                    {/* filler */}
+                                </div>
+                            </div>
+                            <div className="card">
+                                <div className="card-body">
+                                    <div className="row">
+                                        <div className="col">
+                                            <h4>google maps somehow? </h4>
+                                            <div id="mapsApi">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 };
 
 export default FlightsList;

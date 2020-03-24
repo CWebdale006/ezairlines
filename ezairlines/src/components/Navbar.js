@@ -23,6 +23,9 @@ const MyNavbar = () => {
                         <Link to="/" className="nav-link" id="navEffect" onClick={addClass}>Home</Link>
                     </Nav.Item>
                     <Nav.Item>
+                        <Link to="/update-user" className="nav-link" id="navEffect" onClick={addClass}>Update user</Link>
+                    </Nav.Item>
+                    <Nav.Item>
                         {isAuthenticated && <Link to="/external-api" className="nav-link" id="navEffect" onClick={addClass}>External API</Link>}
                     </Nav.Item>
                 </Nav>

@@ -86,6 +86,7 @@ app.patch('/book', (req, res)=>{
         method: 'PATCH',
         url: 'https://dev-0anjj2er.auth0.com/api/v2/users/'+userId,
         headers: {
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(body)

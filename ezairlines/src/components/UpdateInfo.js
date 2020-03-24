@@ -25,7 +25,7 @@ export default function UpdateInfo() {
                 token: token,
                 body: {
                     // "user_metadata" : { "tickets": {BookedTickets} }
-                    'user_metadata': { 'test': 'from update info' }
+                    user_metadata: { 'test': 'from update info' }
                 }
             };
             

@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 
@@ -14,6 +15,14 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 
 // body parser middleware  
 app.use(express.json());
+
+// links to database
+const uri = process.env.URI;
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+const connection = mongoose.connection; 
+connection.once('open', () => {
+    console.log('MongoDB database connection established successfully');
+})
 
 // set up auth0 configuration
 const authConfig = {
@@ -101,13 +110,9 @@ app.patch('/book', (req, res)=>{
 
 // getting destination data from mongoDB to populate the FlightList
 // component 
-app.get('/destinations/', (req,res) => {
-    try {
-        destinations=>res.json(destinations)
-    } catch(error) {
-        console.log("error from the 'destinations' route: "+error)
-    }
-})
+const destinationsRouter = require('./routes/destinations');
+app.use('/destinations', destinationsRouter);
+
 
 
 // starts the app 

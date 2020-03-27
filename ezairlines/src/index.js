@@ -5,7 +5,7 @@ import "./css/index.css";
 import * as serviceWorker from './serviceWorker';
 
 // auth0 imports 
-import { Auth0Provider } from "./react-auth0-spa";
+import { Auth0Provider, useAuth0 } from "./react-auth0-spa";
 import config from "./auth_config.json";
 import history from "./utils/history";
 

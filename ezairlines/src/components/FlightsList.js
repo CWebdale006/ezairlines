@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { round } from 'mathjs';
@@ -69,30 +70,51 @@ function Weather(to) {
     )
 }
 
-const Destination = props => {
-    const { isAuthenticated, loginWithRedirect } = useAuth0();
-    console.log(props.destination);
-    alert(props.destination);
+// const Destination = props => {
+//     const { isAuthenticated, loginWithRedirect } = useAuth0();
+//     console.log(props.destination);
+//     alert(props.destination);
 
-    return (
-        <tr id={props.destination.to}>
-            <td>{props.destination.from}</td>
-            <td>{props.destination.to}</td>
-            <td>{props.destination.departDate.substring(0,10)}</td>
-            <td>{props.destination.returnDate.substring(0,10)}</td>
-            <td>{props.destination.price}</td>
-            <td>
-                {!isAuthenticated && (
+//     return (
+//         <tr id={props.destination.to}>
+//             <td>{props.destination.from}</td>
+//             <td>{props.destination.to}</td>
+//             <td>{props.destination.departDate.substring(0,10)}</td>
+//             <td>{props.destination.returnDate.substring(0,10)}</td>
+//             <td>{props.destination.price}</td>
+//             <td>
+//                 {!isAuthenticated && (
+//                     <button type="button" className="btn btn-primary" onClick={() => loginWithRedirect({})}>Purchase</button>
+//                 )}
+
+//                 {isAuthenticated && (
+//                     <button type="button" className="btn btn-primary">
+//                         <Link id="link" to={'/book/'+props.destination._id}>Purchase</Link>
+//                     </button>
+//                 )}
+//             </td>
+//         </tr>
+//     )
+// };
+
+
+
+const Action = props => {
+    const { isAuthenticated, loginWithRedirect } = useAuth0();
+
+    return ( 
+        <div>
+            <h2>hey</h2>
+            {!isAuthenticated && (
                     <button type="button" className="btn btn-primary" onClick={() => loginWithRedirect({})}>Purchase</button>
                 )}
 
-                {isAuthenticated && (
-                    <button type="button" className="btn btn-primary">
-                        <Link id="link" to={'/book/'+props.destination._id}>Purchase</Link>
-                    </button>
-                )}
-            </td>
-        </tr>
+            {isAuthenticated && (
+                <button type="button" className="btn btn-primary">
+                    <Link id="link" to={'/book/'+props.destination._id}>Purchase</Link>
+                </button>
+            )}
+        </div>
     )
 };
 
@@ -103,33 +125,40 @@ const FlightsList = () => {
         .then(res=>{
             const list = res.data;
             let listHTML = document.getElementById("destinationsList")
+
+            let x = 0;
             
-            // listHTML.innerHTML = (
-            //     list.map(currentDestination=>{
-            //         console.log(currentDestination)
-            //         // return (
-            //         //     <tr id={currentDestination.to}>
-            //         //         <td>{currentDestination.from}</td>
-            //         //         <td>{currentDestination.to}</td>
-            //         //         <td>{currentDestination.departDate.substring(0,10)}</td>
-            //         //         <td>{currentDestination.returnDate.substring(0,10)}</td>
-            //         //         <td>{currentDestination.price}</td>
-            //         //         <td>
-            //         //             {!isAuthenticated && (
-            //         //                 <button type="button" className="btn btn-primary" onClick={() => loginWithRedirect({})}>Purchase</button>
-            //         //             )}
+            listHTML.innerHTML = (
+                list.map(currentDestination=>{
+                    console.log(currentDestination)
+                    // return (
+                    //     <tr id={currentDestination.to}>
+                    //         <td>{currentDestination.from}</td>
+                    //         <td>{currentDestination.to}</td>
+                    //         <td>{currentDestination.departDate.substring(0,10)}</td>
+                    //         <td>{currentDestination.returnDate.substring(0,10)}</td>
+                    //         <td>{currentDestination.price}</td>
+                    //         <td>
+                    //             {!isAuthenticated && (
+                    //                 <button type="button" className="btn btn-primary" onClick={() => loginWithRedirect({})}>Purchase</button>
+                    //             )}
                 
-            //         //             {isAuthenticated && (
-            //         //                 <button type="button" className="btn btn-primary">
-            //         //                     <Link id="link" to={'/book/'+currentDestination._id}>Purchase</Link>
-            //         //                 </button>
-            //         //             )}
-            //         //         </td>
-            //         //     </tr>
-            //         // )
-            //         return `<tr id=${currentDestination.to} ><td>${currentDestination.from}</td><td>${currentDestination.to}</td><td>${currentDestination.departDate.substring(0,10)}</td><td>${currentDestination.returnDate.substring(0,10)}</td><td>${currentDestination.price}</td></tr>`
-            //     })
-            // )
+                    //             {isAuthenticated && (
+                    //                 <button type="button" className="btn btn-primary">
+                    //                     <Link id="link" to={'/book/'+currentDestination._id}>Purchase</Link>
+                    //                 </button>
+                    //             )}
+                    //         </td>
+                    //     </tr>
+                    // )
+                    x++
+                    return `<tr id=${currentDestination.to} ><td>${currentDestination.from}</td><td>${currentDestination.to}</td><td>${currentDestination.departDate.substring(0,10)}</td><td>${currentDestination.returnDate.substring(0,10)}</td><td>${currentDestination.price}</td><td class="actions">${<Action key={currentDestination._id} />}</td></tr>`
+                })
+            )
+            // for (let i = 0; i <= x; i++) {
+            //     let y = list[i]
+            //     ReactDOM.render(<Action key={y._id} />,document.getElementsByClassName("actions")[i]);          
+            // }
         })
         .catch((error)=>{
             console.log("axios error is: "+error);

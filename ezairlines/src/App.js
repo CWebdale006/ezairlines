@@ -2,6 +2,8 @@ import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import "./css/App.css";
 
+import { useAuth0 } from "./react-auth0-spa";
+
 import MyNavbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import ExternalApi from "./components/ExternalApi";

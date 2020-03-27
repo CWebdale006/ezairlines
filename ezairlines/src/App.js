@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import UpdateInfo from "./components/UpdateInfo";
 import FlightsList from "./components/FlightsList";
 import BookFlight from "./components/BookFlight";
+import SearchDestination from "./components/SearchDestination";
 
 import history from "./utils/history";
 
@@ -33,7 +34,7 @@ function App() {
         </Router>
       </section>
       <section>
-        {/* <SearchDestination /> */}
+        <SearchDestination />
       </section>
       <section>
         {/* <Footer /> */}

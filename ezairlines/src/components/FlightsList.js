@@ -101,7 +101,7 @@ export default class FlightsList extends Component {
         axios.get('http://localhost:3001/destinations/')
             .then(res=>{
                 this.setState({ destinations: res.data });
-                console.log(this.state.destinations);
+                // console.log(this.state.destinations);
             })
             .catch((error)=>{
                 console.log("axios error is: "+error);

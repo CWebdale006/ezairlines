@@ -83,7 +83,7 @@ const Destination = props => {
 
                 {isAuthenticated && (
                     <button type="button" className="btn btn-primary">
-                        <Link id="link" to={'/edit/'+props.destination._id}>Purchase</Link>
+                        <Link id="link" to={'/book/'+props.destination._id}>Purchase</Link>
                     </button>
                 )}
             </td>

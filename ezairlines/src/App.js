@@ -26,6 +26,7 @@ function App() {
               <Route path='/' exact component={FlightsList} />
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/book" component={BookFlight} />
+              <PrivateRoute path="/book/:id" component={BookFlight} />
 
               <PrivateRoute path="/external-api" component={ExternalApi} />
               <PrivateRoute path="/update-user" component={UpdateInfo} />

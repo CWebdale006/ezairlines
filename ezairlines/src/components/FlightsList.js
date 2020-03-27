@@ -72,6 +72,7 @@ function Weather(to) {
 const Destination = props => {
     const { isAuthenticated, loginWithRedirect } = useAuth0();
     console.log(props.destination);
+    alert(props.destination);
 
     return (
         <tr id={props.destination.to}>
@@ -94,29 +95,49 @@ const Destination = props => {
         </tr>
     )
 };
-let x;
-
-const DestinationsList = () => {
-    axios.get('http://localhost:3001/destinations/')
-        .then(res=>{
-            console.log(res.data);
-            let x = { destinations: res.data }
-            console.log(x);
-            // destinationArray = Object.values(destinationsVar);
-            // console.log(destinationArray[0]);
-            // return destinationArray[0]
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
-    return x.destinations.map(currentdestination=>{
-        return <Destination destination={currentdestination} key={currentdestination._id} />
-    })
-}
 
 const FlightsList = () => {
-    const [ destinations, setDestinations ] = useState([]);
-    const [ destinationList, setDestinationList ] = useState();
+    const { isAuthenticated, loginWithRedirect } = useAuth0();
+
+    axios.get('http://localhost:3001/destinations')
+        .then(res=>{
+            const list = res.data;
+            let listHTML = document.getElementById("destinationsList")
+            
+            // listHTML.innerHTML = (
+            //     list.map(currentDestination=>{
+            //         console.log(currentDestination)
+            //         // return (
+            //         //     <tr id={currentDestination.to}>
+            //         //         <td>{currentDestination.from}</td>
+            //         //         <td>{currentDestination.to}</td>
+            //         //         <td>{currentDestination.departDate.substring(0,10)}</td>
+            //         //         <td>{currentDestination.returnDate.substring(0,10)}</td>
+            //         //         <td>{currentDestination.price}</td>
+            //         //         <td>
+            //         //             {!isAuthenticated && (
+            //         //                 <button type="button" className="btn btn-primary" onClick={() => loginWithRedirect({})}>Purchase</button>
+            //         //             )}
+                
+            //         //             {isAuthenticated && (
+            //         //                 <button type="button" className="btn btn-primary">
+            //         //                     <Link id="link" to={'/book/'+currentDestination._id}>Purchase</Link>
+            //         //                 </button>
+            //         //             )}
+            //         //         </td>
+            //         //     </tr>
+            //         // )
+            //         return `<tr id=${currentDestination.to} ><td>${currentDestination.from}</td><td>${currentDestination.to}</td><td>${currentDestination.departDate.substring(0,10)}</td><td>${currentDestination.returnDate.substring(0,10)}</td><td>${currentDestination.price}</td></tr>`
+            //     })
+            // )
+        })
+        .catch((error)=>{
+            console.log("axios error is: "+error);
+        })
+
+
+    // const [ destinations, setDestinations ] = useState([]);
+    // const [ destinationList, setDestinationList ] = useState();
     
     const HeaderText = () => {
         const { loading, user } = useAuth0();
@@ -159,8 +180,8 @@ const FlightsList = () => {
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <DestinationsList />
+                                            <tbody id="destinationsList">
+
                                             </tbody>
                                         </table>
                                     </div>

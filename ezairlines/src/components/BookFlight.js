@@ -1,26 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
 import axios from 'axios';
 
 import { useAuth0 } from "../react-auth0-spa";
-
-// const TicketData = () => {
-//     // settting up variables to work with state 
-//     // const [ from, setFrom ] = useState();
-//     // const [ to, setTo ] = useState();
-//     // const [ departDate, setDepartDate ] = useState();
-//     // const [ returnDate, setReturnDate ] = useState();
-//     // const [ price, setPrice ] = useState();
-
-//     // getting id from parameters to use for axios request to database 
-//     let { id } = useParams();
-
-//     return (
-//         <div>
-//             he
-//         </div>
-//     )
-// }
 
 export default function BookFlight() {
     const { user } = useAuth0();
@@ -28,8 +11,8 @@ export default function BookFlight() {
     // settting up variables to work with state 
     const [ from, setFrom ] = useState();
     const [ to, setTo ] = useState();
-    const [ departDate, setDepartDate ] = useState();
-    const [ returnDate, setReturnDate ] = useState();
+    const [ departDate, setDepartDate ] = useState(new Date());
+    const [ returnDate, setReturnDate ] = useState(new Date());
     const [ price, setPrice ] = useState();
     const [ amount, setAmount ] = useState();
     
@@ -41,8 +24,8 @@ export default function BookFlight() {
         .then(res=>{
             setFrom(res.data.from);
             setTo(res.data.to);
-            setDepartDate(res.data.departDate);
-            setReturnDate(res.data.returnDate);
+            setDepartDate(new Date(res.data.departDate));
+            setReturnDate(new Date(res.data.returnDate));
             setPrice(res.data.price);
         })
         .catch((error)=>{
@@ -51,7 +34,76 @@ export default function BookFlight() {
 
     return (
         <>
-            <button onClick={updateUser}>CLick</button>
+            <div className="container">
+                <div className="row">
+                    <div className="col"></div>
+                    <div className="col-10">
+                        <h6 className="display-4 text-center">Review your trip</h6>
+                        <div className="card">
+                            <div className="card-body">
+                                {/* <h5 className="card-title">Special title treatment</h5> */}
+                                <p className="card-text">from, to, depart date, return date, price, and user-selected amount.</p>
+
+                                <div className="row">
+                                    <div className="col">
+                                        <h6 className="card-text">From: </h6>
+                                    </div>
+                                    <div className="col">{from}</div>
+                                </div>
+                                <div className="row">
+                                    <div className="col">
+                                        <h6 className="card-text">To: </h6>
+                                    </div>
+                                    <div className="col">{to}</div>
+                                </div>
+                                <div className="row">
+                                    <div className="col">
+                                        <h6 className="card-text">Depart date: </h6>
+                                    </div>
+                                    <div className="col">
+                                        {/* <DatePicker 
+                                            selected={JSON.stringify(departDate)} 
+                                            onChange={date=>setDepartDate(date)} 
+                                        /> */}
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col">
+                                        <h6 className="card-text">Return date: </h6>
+                                    </div>
+                                    <div className="col">{JSON.stringify(returnDate)}</div>
+                                </div>
+                                <div className="row">
+                                    <div className="col">
+                                        <h6 className="card-text">Amount: </h6>
+                                    </div>
+                                    <div className="col"></div>
+                                </div>
+                                <div className="row">
+                                    <div className="col">
+                                        <h6 className="card-text">Price: </h6>
+                                    </div>
+                                    <div className="col">{
+                                        price*amount
+                                    }</div>
+                                </div>
+                                <div className="row">
+                                    <div className="col">
+                                        {/* filler */}
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col text-center">
+                                        <button className="text-center btn btn-primary" onClick={updateUser}>Book your flight</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col"></div>
+                </div>
+            </div>
         </>
     )
 

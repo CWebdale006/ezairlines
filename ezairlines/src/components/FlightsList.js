@@ -112,13 +112,25 @@ export default class FlightsList extends Component {
         const HeaderText = () => {
             const { loading, user } = useAuth0();
 
-            if (loading || !user) {
+            if (!user) {
                 return <div>Book a flight</div>;
+            }
+
+            if (loading) {
+                return <div></div>
             }
 
             return (
                 <Fragment>
-                    Welcome, {user.given_name}!
+                    {user.given_name != null && (
+                        `Welcome, ${user.given_name}!`
+                    )}
+                    {user.given_name == null && user.name != null && (
+                        `Welcome, ${user.name}`
+                    )}
+                    {user.given_name == null && user.name == null && (
+                        `Welcome!`
+                    )}
                 </Fragment>
             )
         }

@@ -17,3 +17,6 @@
     * [ ] - navbar.component.js -> Navbar.js
         * [ x ] - basic stuff is done, will need to come back later
         * [ ] - rename someone of the Links, idk if i like them
+    * [ ] - edit-destination.component.js -> BookFlight.js
+      * [ ] - IMPORTANT!!!! the way the data is getting sent will make it awkward if a user books multiple tickets, so... fix that. idk how yet, but it should be changed 
+      * [ ] - check your updateUser function to see if you can reduce the amount of variables used for cleaner code 

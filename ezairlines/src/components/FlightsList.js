@@ -82,9 +82,9 @@ const Destination = props => {
                 )}
 
                 {isAuthenticated && (
-                    <button type="button" className="btn btn-primary">
-                        <Link id="link" to={'/book/'+props.destination._id}>Purchase</Link>
-                    </button>
+                    <Link id="link" to={'/book/'+props.destination._id}>
+                        <button type="button" className="btn btn-primary">Purchase</button>
+                    </Link>
                 )}
             </td>
         </tr>
@@ -101,7 +101,7 @@ export default class FlightsList extends Component {
         axios.get('http://localhost:3001/destinations/')
             .then(res=>{
                 this.setState({ destinations: res.data });
-                console.log(this.state.destinations);
+                // console.log(this.state.destinations);
             })
             .catch((error)=>{
                 console.log("axios error is: "+error);

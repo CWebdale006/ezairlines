@@ -50,6 +50,7 @@ function Weather(to) {
     }
     getWeather(to.to);
 
+    // creating empty elements to be filled in with data from the weather api
     return (
         <>
             <h4 id="city">Weather: </h4>
@@ -66,6 +67,7 @@ function Weather(to) {
     )
 }
 
+// a template for each ticket 
 const Destination = props => {
     const { isAuthenticated, loginWithRedirect } = useAuth0();
 
@@ -97,6 +99,7 @@ export default class FlightsList extends Component {
         this.state = { destinations: [] };
     }
 
+    // getting ticket data from our database and setting it to this.state.destinations
     componentDidMount() {
         axios.get('http://localhost:3001/destinations/')
             .then(res=>{

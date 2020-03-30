@@ -10,17 +10,21 @@
     * [ ] - App.js -> App.js
         * [ ] - possibly need to add routes later
         * [ ] - uncomment the SearchDestination and Footer components, and actually write them 
+        * [ ] - guests not logged in can access the /book/'id' route since it isn't private, but it doesn't work if i make it a private route. my error handling is pretty good as is, but it is still something that should be improved if possible 
     * [ ] - footer.component.js -> Footer.js
-        * [ ] - start writing (after routing/backend is working)
+        * [ x ] - start writing (after routing/backend is working)
+        * [ ] - Make it stay at bottom of page no matter what, example of bad is profile page
     * [ ] - search-destination.component.js -> SearchDestination.js
-        * [ ] - start work 
+        * [ ] - need a depart date and a return date search
     * [ ] - navbar.component.js -> Navbar.js
         * [ x ] - basic stuff is done, will need to come back later
         * [ ] - rename someone of the Links, idk if i like them
     * [ ] - edit-destination.component.js -> BookFlight.js
       * [ ] - IMPORTANT!!!! the way the data is getting sent will make it awkward if a user books multiple tickets, so... fix that. idk how yet, but it should be changed 
       * [ ] - check your updateUser function to see if you can reduce the amount of variables used for cleaner code 
+      * [ ] - dates shouldn't be editable, make that a separate page or something, i don't know yet
 * [ ] - 2 most urgent things: 
     * [ ] - booking tickets needs to ADD to data, not REPLACE
     * [ ] - display booked tickets on user profile 
 * [ ] - on the profile page, add animations from: https://daneden.github.io/animate.css/
+* [ ] - we need an easy way to generate tickets for the database, so when people search for things there is actually results 

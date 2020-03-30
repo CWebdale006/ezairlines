@@ -24,34 +24,6 @@ connection.once('open', () => {
     console.log('MongoDB database connection established successfully');
 })
 
-// set up auth0 configuration
-const authConfig = {
-    domain: 'dev-0anjj2er.auth0.com',
-    audience: 'https://api.mysite.com'
-};
-
-// defines middleware that validates incoming bearer tokens 
-// using JWKS from dev-0anjj2er.auth0.com
-const checkJwt = jwt({
-    secret: jwksRsa.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
-    }),
-
-    audience: authConfig.audience,
-    issuer: `https://${authConfig.domain}/`,
-    algorithm: ['RS256']
-});
-
-// defines an endpoint that must be called with an access token
-app.get('/api/external', checkJwt, (req, res) => {
-    res.send({
-        msg: 'Your access token was successfully validated sir'
-    });
-});
-
 /**
  * getting a token!!!!!!
  */ 

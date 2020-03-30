@@ -4,6 +4,8 @@ import axios from 'axios';
 import '../css/FlightList.css';
 import { round } from 'mathjs';
 
+import SearchDestination from './SearchDestination';
+
 import { useAuth0 } from "../react-auth0-spa";
 
 function Weather(to) {
@@ -140,63 +142,65 @@ export default class FlightsList extends Component {
 
         return ( 
             <>
-                <div>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col"> 
-                                <h1 className="display-4">
-                                    <HeaderText />
-                                </h1>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <div>
-                                            <table className="table">
-                                                <thead className="thead-light">
-                                                    <tr>
-                                                        <th>From</th>
-                                                        <th>To</th>
-                                                        <th>Depart Date</th>
-                                                        <th>Return Date</th>
-                                                        <th>Price</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    { this.destinationsList() }
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                <div className="container">
+                    <div>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col"> 
+                                    <h1 className="display-4">
+                                        <HeaderText />
+                                    </h1>
                                 </div>
                             </div>
-                            <div className="col">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <div className="row">
-                                            <div className="col">
-                                                <div is="weatherApi">
-                                                    <Weather to="sacramento" />
-                                                </div>
+                            <div className="row">
+                                <div className="col">
+                                    <div className="card">
+                                        <div className="card-body">
+                                            <div>
+                                                <table className="table">
+                                                    <thead className="thead-light">
+                                                        <tr>
+                                                            <th>From</th>
+                                                            <th>To</th>
+                                                            <th>Depart Date</th>
+                                                            <th>Return Date</th>
+                                                            <th>Price</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        { this.destinationsList() }
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="card" id="hehe">
-                                    <div className="card-body">
-                                        {/* filler */}
+                                <div className="col">
+                                    <div className="card">
+                                        <div className="card-body">
+                                            <div className="row">
+                                                <div className="col">
+                                                    <div is="weatherApi">
+                                                        <Weather to="sacramento" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <div className="row">
-                                            <div className="col">
-                                                <h4>Google Maps somehow?</h4>
-                                                <div id="mapsAPi">
+                                    <div className="card" id="hehe">
+                                        <div className="card-body">
+                                            {/* filler */}
+                                        </div>
+                                    </div>
+                                    <div className="card">
+                                        <div className="card-body">
+                                            <div className="row">
+                                                <div className="col">
+                                                    <h4>Google Maps somehow?</h4>
+                                                    <div id="mapsAPi">
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -206,6 +210,7 @@ export default class FlightsList extends Component {
                         </div>
                     </div>
                 </div>
+                <SearchDestination />
             </>
         )
     }

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { useAuth0 } from "../react-auth0-spa";
 import "../css/Profile.css";
 
@@ -33,13 +33,13 @@ const UserInfo = () => {
         //     <code>{JSON.stringify(user,null,2)}</code>
         // </Fragment>
 
-        <aside style={asideStyles}>
-            <div className="container">
-                <div className="row">
-                    <div className="col d-inline-flex p-2">
-                        <img style={imgStyles} src={user.picture} alt="profile pic" />
-                    </div>
-                    {user.name != null && (
+        <div className="container">
+            <aside style={asideStyles}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col d-inline-flex p-2">
+                            <img style={imgStyles} src={user.picture} alt="profile pic" />
+                        </div>
                         <div className="col-3 d-flex flex-column align-items-center justify-content-center">
                             <div className="row">
                                 <div className="col">
@@ -52,27 +52,13 @@ const UserInfo = () => {
                                 </div>
                             </div>
                         </div>
-                    )}
-                    {user.name == null && (
-                        <div className="col-3 d-flex flex-column align-items-center justify-content-center">
-                        <div className="row">
-                            <div className="col">
-                                {/* <h5>{user.name}</h5> */}
-                            </div>
+                        <div className="col-7">
+                            well you can put tickets or something here so gj
                         </div>
-                        <div className="row">
-                            <div className="col">
-                                <small className="text-muted">{user.email}</small>
-                            </div>
-                        </div>
-                    </div>
-                    )}
-                    <div className="col-7">
-                        well you can put tickets or something here so gj
                     </div>
                 </div>
-            </div>
-        </aside>
+            </aside>
+        </div>
     )
 }
 

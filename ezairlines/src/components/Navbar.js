@@ -14,38 +14,37 @@ const MyNavbar = () => {
     }
 
     return (
-        <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="/">EZAirlines</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto" defaultactivekey="/">
-                    <Nav.Item>
-                        <Link to="/" className="nav-link" id="navEffect" onClick={addClass}>Home</Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Link to="/update-user" className="nav-link" id="navEffect" onClick={addClass}>Update user</Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        {isAuthenticated && <Link to="/external-api" className="nav-link" id="navEffect" onClick={addClass}>External API</Link>}
-                    </Nav.Item>
-                </Nav>
-                <Form inline>
-                    {/**idk why this is in a div */}
-                    <div>
-                        {!isAuthenticated && (
-                            <button type="button" className="btn btn-primary" onClick={() => loginWithRedirect({})}>Log in</button>
-                        )}
+        <div className="container">
+            <Navbar bg="light" expand="lg">
+                <Navbar.Brand href="/">EZAirlines</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto" defaultactivekey="/">
+                        <Nav.Item>
+                            <Link to="/" className="nav-link" id="navEffect" onClick={addClass}>Home</Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <a href="#searchDestination" className="nav-link" id="navEffect">Search Flights</a>
+                        </Nav.Item>
+                    </Nav>
+                    <Form inline>
+                        {/**idk why this is in a div */}
+                        <div>
+                            {!isAuthenticated && (
+                                <button type="button" className="btn btn-primary" onClick={() => loginWithRedirect({})}>Log in</button>
+                            )}
 
-                        {isAuthenticated && (
-                            <>
-                                <Link id="link" to="/profile"><button type="button" className="btn btn-primary">Profile</button></Link>
-                                <button type="button" className="btn btn-primary" onClick={() => logout()}>Log out</button>
-                            </>
-                        )}
-                    </div>
-                </Form>
-            </Navbar.Collapse>
-        </Navbar>
+                            {isAuthenticated && (
+                                <>
+                                    <Link id="link" to="/profile"><button type="button" className="btn btn-primary">Profile</button></Link>
+                                    <button type="button" className="btn btn-primary" onClick={() => logout()}>Log out</button>
+                                </>
+                            )}
+                        </div>
+                    </Form>
+                </Navbar.Collapse>
+            </Navbar>
+        </div>
 
         /**
          * THIS WORKS, DO NOT DELETE

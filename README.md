@@ -2,7 +2,7 @@
 
 ## TO-DO: 
 * [ ] - copy components from original project, while cleaning them up 
-    * [ ] - destinations-list.component -> FlightsList
+    * [ ] - destinations-list.component -> FlightsList 
         * [ ] - finish the weather function, try to get it to change which city it displays depending on which ticket is hovered over 
         * [ ] - google maps api was only added to meet project requirements for the final, but if i can get it to work that's cool too 
         * [ ] - i don't like the way the "Book a flight" changes to "Welcome, User!" everytime the page is refreshed, looks choppy, maybe add different cases for !user and loading? 

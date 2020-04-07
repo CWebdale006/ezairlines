@@ -28,3 +28,6 @@
     * [ ] - display booked tickets on user profile 
 * [ ] - on the profile page, add animations from: https://daneden.github.io/animate.css/
 * [ ] - we need an easy way to generate tickets for the database, so when people search for things there is actually results 
+* [ ] - there is some error handling you need to work on
+    * [ ] - while NOT logged in, go to http://localhost:3000/book and it will force you to log in. when you are redirected, there is an error with the weather api ( this error happens a LOT )
+        * [ ] - and even once you get past that, there is still empty fields and NAN in the data. if that happens, an error page needs to be displayed. 

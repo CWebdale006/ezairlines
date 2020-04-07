@@ -20,16 +20,16 @@ function App() {
             <MyNavbar />
             <Switch>
               <Route path='/' exact component={FlightsList} />
-              <Route path='/book/:id' component={BookFlight} />
+              {/* <Route path='/book/:id' component={BookFlight} /> */}
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/book" component={BookFlight} />
-              {/* <PrivateRoute path="/book/:id" component={BookFlight} /> */}
+              <PrivateRoute path="/book/*" component={BookFlight} />
             </Switch>
           {/* </div> */}
         </Router>
       </section>
       <section>
-        <Footer />
+        <Footer/>
       </section>
     </>
   )

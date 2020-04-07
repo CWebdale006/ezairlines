@@ -26,5 +26,6 @@
 * [ ] - 2 most urgent things: 
     * [ ] - booking tickets needs to ADD to data, not REPLACE
     * [ ] - display booked tickets on user profile 
+    * [ ] - display a limited amount of tickets on the home page, add scroll bar or smth
 * [ ] - on the profile page, add animations from: https://daneden.github.io/animate.css/
-* [ ] - we need an easy way to generate tickets for the database, so when people search for things there is actually results 
+* [ x ] - we need an easy way to generate tickets for the database, so when people search for things there is actually results 

@@ -4,6 +4,9 @@ import axios from 'axios';
 import '../css/FlightList.css';
 import { round } from 'mathjs';
 
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+
 import SearchDestination from './SearchDestination';
 
 import { useAuth0 } from "../react-auth0-spa";
@@ -74,7 +77,7 @@ const Destination = props => {
     const { isAuthenticated, loginWithRedirect } = useAuth0();
 
     return (
-        <tr id={props.destination.to}>
+        <tr id={props.destination.to} className='item'>
             <td>{props.destination.from}</td>
             <td>{props.destination.to}</td>
             <td>{props.destination.departDate.substring(0,10)}</td>
@@ -114,6 +117,8 @@ export default class FlightsList extends Component {
     }
 
     render() {
+        const handleOnDragStart = (e) => e.preventDefault();
+
         const HeaderText = () => {
             const { loading, user } = useAuth0();
 
@@ -157,7 +162,7 @@ export default class FlightsList extends Component {
                                     <div className="card">
                                         <div className="card-body">
                                             <div>
-                                                <table className="table">
+                                                <table className="table" style={{marginBottom:"0px"}}>
                                                     <thead className="thead-light">
                                                         <tr>
                                                             <th>From</th>
@@ -169,7 +174,14 @@ export default class FlightsList extends Component {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        { this.destinationsList() }
+                                                        {/* write with correct <tr> and <td> stuff */}
+                                                        <tr>
+                                                            <td>
+                                                                <AliceCarousel>
+                                                                    {this.destinationsList()}
+                                                                </AliceCarousel>
+                                                            </td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>

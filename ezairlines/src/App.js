@@ -8,6 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import FlightsList from "./components/FlightsList";
 import BookFlight from "./components/BookFlight";
 import Footer from "./components/Footer";
+import Carousel from "./components/Carousel";
 
 import history from "./utils/history";
 
@@ -21,6 +22,7 @@ function App() {
             <Switch>
               <Route path='/' exact component={FlightsList} />
               <Route path='/book/:id' component={BookFlight} />
+              <Route path='/carousel' component={Carousel} />
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/book" component={BookFlight} />
               {/* <PrivateRoute path="/book/:id" component={BookFlight} /> */}

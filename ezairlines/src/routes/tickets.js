@@ -1,17 +1,17 @@
 const router = require('express').Router();
-let Destination = require('../models/destination.model');
+let Ticket = require('../models/ticket.model');
 
 // GET
 router.route('/').get((req, res) => {
-    Destination.find()
-    .then(destinations => res.json(destinations))
+    Ticket.find()
+    .then(tickets => res.json(tickets))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// returning a destination item given an id
+// returning a ticket item given an id
 router.route('/:id').get((req, res) => {
-    Destination.findById(req.params.id)
-    .then(destination => res.json(destination))
+    Ticket.findById(req.params.id)
+    .then(ticket => res.json(ticket))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

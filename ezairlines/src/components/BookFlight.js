@@ -52,13 +52,15 @@ export default function BookFlight() {
     // getting id from parameters to use for axios request to database 
     let { id } = useParams();
 
+    console.log(`the id is ${id}`)
+
     // useeffect takes a second parameter, putting it in fixes a 
     // problem that i've been dealing with for a while, and makes it 
     // so that the function only runs once, without it the axios request 
     // get made over and over and breaks the site 
     useEffect(()=>{
         document.getElementById("overlay").style.display = "none"
-        axios.get('http://localhost:3001/destinations/'+id)
+        axios.get('http://localhost:3001/tickets/'+id)
             .then(res=>{
                 // setting state to data from my backend
                 setFrom(res.data.from);

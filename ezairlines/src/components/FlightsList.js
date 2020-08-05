@@ -103,7 +103,7 @@ export default class FlightsList extends Component {
 
     // getting ticket data from our database and setting it to this.state.destinations
     componentDidMount() {
-        axios.get('http://localhost:3001/destinations/')
+        axios.get('http://localhost:3001/tickets/')
             .then(res=>{
                 this.setState({ destinations: res.data });
                 // console.log(this.state.destinations);

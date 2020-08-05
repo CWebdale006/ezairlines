@@ -28,7 +28,7 @@ export default function SearchDestination() {
         autoComplete(document.getElementById("toInput"), to);
         autoComplete(document.getElementById("fromInput"), from);
         
-        axios.get('http://localhost:3001/destinations/')
+        axios.get('http://localhost:3001/tickets/')
             .then(res=>{
                 let ticketArray = res.data; 
 

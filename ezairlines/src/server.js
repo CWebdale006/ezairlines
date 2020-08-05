@@ -38,9 +38,9 @@ app.get('/get-token', (req, res)=>{
 
     var options = { 
         method: 'POST',
-        url: 'https://dev-0anjj2er.auth0.com/oauth/token',
+        url: 'https://ezairlines.us.auth0.com/oauth/token',
         headers: { 'content-type': 'application/json' },
-        body: '{"client_id":"Nye1Ijo0IA8fAQ4SXINaoq2owdY3h5u2","client_secret":"'+clientSecret+'","audience":"https://dev-0anjj2er.auth0.com/api/v2/","grant_type":"client_credentials"}'
+        body: '{"client_id":"Lx7AjTCAhZd1VY7g6OUKsg331tvOTUTa","client_secret":"'+clientSecret+'","audience":"https://ezairlines.us.auth0.com/api/v2/","grant_type":"client_credentials"}'
     };
     
     request(options, function (error, response, body) {
@@ -63,9 +63,11 @@ app.patch('/book', (req, res)=>{
     const token = req.body.token;
     const body = req.body.body;
 
+    console.log(`the token is: ${token}`)
+
     var options = {
         method: 'PATCH',
-        url: 'https://dev-0anjj2er.auth0.com/api/v2/users/'+userId,
+        url: 'https://ezairlines.us.auth0.com/api/v2/users/'+userId,
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
@@ -82,8 +84,8 @@ app.patch('/book', (req, res)=>{
 
 // getting destination data from mongoDB to populate the FlightList
 // component 
-const destinationsRouter = require('./routes/destinations');
-app.use('/destinations', destinationsRouter);
+const ticketsRouter = require('./routes/tickets');
+app.use('/tickets', ticketsRouter);
 
 
 

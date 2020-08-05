@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const destinationSchema = new Schema({
+const ticketScema = new Schema({
     from: { type: String, required: true },
     to: { type: String, required: true },
     departDate: { type: Date, required: true },
@@ -11,6 +11,6 @@ const destinationSchema = new Schema({
     timestamps: true,
 });
 
-const Destination = mongoose.model('Destination', destinationSchema);
+const Ticket = mongoose.model('Ticket', ticketScema);
 
-module.exports = Destination;
+module.exports = Ticket;

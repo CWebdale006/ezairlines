@@ -7,6 +7,7 @@ import { round } from 'mathjs';
 import SearchDestination from './SearchDestination';
 
 import { useAuth0 } from "../react-auth0-spa";
+import { bulkWrite } from '../models/ticket.model';
 
 function Weather(to) {
     function getWeather(city) {
@@ -105,8 +106,8 @@ export default class FlightsList extends Component {
     componentDidMount() {
         axios.get('http://localhost:3001/tickets/')
             .then(res=>{
+                console.log(res.data);
                 this.setState({ destinations: res.data });
-                // console.log(this.state.destinations);
             })
             .catch((error)=>{
                 console.log("axios error is: "+error);
@@ -114,6 +115,18 @@ export default class FlightsList extends Component {
     }
 
     render() {
+        let length = 5;
+
+        function displayMore() {
+            
+        }
+
+        const seeMore = {
+            display: "flex",
+            justifyContent: "center",
+            color: "blue"
+        }
+
         const HeaderText = () => {
             const { loading, user } = useAuth0();
 
@@ -169,9 +182,17 @@ export default class FlightsList extends Component {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        { this.destinationsList() }
+                                                        { this.destinationsList(length) }
                                                     </tbody>
                                                 </table>
+                                                <div style={seeMore} onClick={ ()=>{
+                                                        length = 10
+                                                        const tBody = document.querySelector("tbody")
+                                                        tBody.innerText = this.destinationsList(length) 
+                                                    }
+                                                 }>
+                                                    <p id="seeMore">See More</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -216,7 +237,8 @@ export default class FlightsList extends Component {
     }
 
     // each ticket is written using the Destination component
-    destinationsList() {
+    destinationsList(length) {
+        this.state.destinations.length = length;
         return this.state.destinations.map(currentDestination=>{
             return <Destination destination={currentDestination} key={currentDestination._id} />
         })

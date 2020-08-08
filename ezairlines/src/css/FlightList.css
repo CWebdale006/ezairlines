@@ -20,3 +20,7 @@
     border: none;
     background: #F1F3FA;
 }
+
+#seeMore:hover {
+    cursor: pointer;
+}
